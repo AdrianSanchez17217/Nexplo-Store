@@ -15,14 +15,7 @@
       background-color: #0652b8;
       color: white;
       padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
       text-align: center;
-    }
-    .header-content {
-      max-width: 100%;
     }
     .logo {
       max-width: 150px;
@@ -74,45 +67,24 @@
       padding: 30px;
       background-color: #f0f0f0;
     }
-    .social h2 {
-      margin-bottom: 10px;
-    }
     .social-icons a {
       margin: 0 15px;
-      display: inline-block;
       font-size: 32px;
       color: #000;
-      transition: transform 0.3s ease, color 0.3s ease;
+      transition: transform 0.3s ease;
     }
     .social-icons a:hover {
       transform: scale(1.2);
     }
-    .social-icons a .fa-youtube {
-      color: #FF0000;
-    }
-    .social-icons a .fa-tiktok {
-      color: #000000;
-    }
-    .social-icons a .fa-instagram {
-      color: #C13584;
-    }
-    .social-icons a .fa-linktree {
-      color: #39e09b;
-    }
+    .social-icons a .fa-youtube { color: #FF0000; }
+    .social-icons a .fa-tiktok { color: #000000; }
+    .social-icons a .fa-instagram { color: #C13584; }
+    .social-icons a .fa-linktree { color: #39e09b; }
     footer {
       background-color: #0652b8;
       color: white;
       text-align: center;
       padding: 20px;
-    }
-    footer .social-icons a {
-      color: white;
-      font-size: 24px;
-      margin: 0 10px;
-      transition: transform 0.3s ease;
-    }
-    footer .social-icons a:hover {
-      transform: scale(1.2);
     }
     .whatsapp-button {
       position: fixed;
@@ -134,31 +106,89 @@
     .whatsapp-button:hover {
       background-color: #1ebe5d;
     }
-
-    /* Formulario oculto */
     #formulario-viaje {
       display: none;
       padding: 40px 20px;
       text-align: center;
       background-color: #f5f5f5;
     }
-
     iframe {
       width: 100%;
       height: 100vh;
       border: none;
+    }
+
+    /* Estilos para el anuncio de video */
+    #video-anuncio {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #video-anuncio video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #contador-box {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      border-radius: 5px;
+    }
+    #cerrar-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 18px;
+      padding: 10px 15px;
+      border: none;
+      background: #ff0000;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #sonido-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 16px;
+      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10001;
+      display: none;
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+  <!-- ANUNCIO DE VIDEO -->
+  <div id="video-anuncio">
+    <video id="videoAd" src="https://adriansanchez17217.github.io/Nexplo-Store/Video.mp4" autoplay playsinline></video>
+    <div id="contador-box">Cierre en <span id="contador">7</span>s</div>
+    <button id="cerrar-btn" onclick="cerrarAnuncio()">Cerrar</button>
+    <button id="sonido-btn" onclick="activarSonido()">🔊 Activar sonido</button>
+  </div>
+
   <header>
-    <div class="header-content">
-      <h1>NEXPLO STORE</h1>
-      <p>Tu puerta a servicios personalizados con IA, viajes y más</p>
-      <a href="#"><img class="logo" src="https://adriansanchez17217.github.io/Nexplo-Store/Logo.png" alt="Logo Nexplo Store" /></a>
-    </div>
+    <h1>NEXPLO STORE</h1>
+    <p>Tu puerta a servicios personalizados con IA, viajes y más</p>
+    <a href="#"><img class="logo" src="https://adriansanchez17217.github.io/Nexplo-Store/Logo.png" alt="Logo Nexplo Store" /></a>
   </header>
 
   <nav>
@@ -172,7 +202,6 @@
     <p>Automatiza, organiza y explora con nuestros servicios únicos</p>
   </section>
 
-  <!-- Servicios -->
   <section id="servicios" class="services">
     <div class="service">
       <h3>Automatización con IA</h3>
@@ -188,7 +217,6 @@
     </div>
   </section>
 
-  <!-- Redes sociales -->
   <section class="social">
     <h2>Síguenos en redes sociales</h2>
     <div class="social-icons">
@@ -199,12 +227,12 @@
     </div>
   </section>
 
-  <!-- Formulario de viaje (oculto hasta que se activa) -->
   <section id="formulario-viaje">
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfvaDlwV2h1SWy_Elt2TTpDv_25mJEoFpuYriR8TUoaMs0x4g/viewform?usp=dialog" loading="lazy"></iframe>
-  <button onclick="volverPaginaPrincipal()" style="margin-top: 20px; padding: 10px 20px; background-color: #0652b8; color: white; border: none; border-radius: 5px; cursor: pointer;">Volver</button>
-</section>
-
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfvaDlwV2h1SWy_Elt2TTpDv_25mJEoFpuYriR8TUoaMs0x4g/viewform?usp=dialog" loading="lazy"></iframe>
+    <div style="text-align:center; margin-top:20px;">
+      <button onclick="volverInicio()" style="padding:10px 20px; font-size:16px; background:#0652b8; color:white; border:none; border-radius:5px; cursor:pointer;">Volver a inicio</button>
+    </div>
+  </section>
 
   <a href="https://wa.me/34600000000" class="whatsapp-button" target="_blank">
     <i class="fab fa-whatsapp"></i>
@@ -216,22 +244,57 @@
   </footer>
 
   <script>
-  function mostrarFormulario() {
-    document.querySelector('.hero').style.display = 'none';
-    document.querySelector('#servicios').style.display = 'none';
-    document.querySelector('.social').style.display = 'none';
-    document.querySelector('#formulario-viaje').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+    function mostrarFormulario() {
+      document.querySelector('.hero').style.display = 'none';
+      document.querySelector('#servicios').style.display = 'none';
+      document.querySelector('.social').style.display = 'none';
+      document.querySelector('#formulario-viaje').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-  function volverPaginaPrincipal() {
-    document.querySelector('#formulario-viaje').style.display = 'none';
-    document.querySelector('.hero').style.display = 'block';
-    document.querySelector('#servicios').style.display = 'flex';
-    document.querySelector('.social').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
+    function volverInicio() {
+      document.querySelector('.hero').style.display = 'block';
+      document.querySelector('#servicios').style.display = 'flex';
+      document.querySelector('.social').style.display = 'block';
+      document.querySelector('#formulario-viaje').style.display = 'none';
+    }
+
+    // Mostrar anuncio 5 segundos después
+    window.onload = function() {
+      setTimeout(function() {
+        document.getElementById("video-anuncio").style.display = "flex";
+        document.getElementById("sonido-btn").style.display = "block";
+        iniciarContador();
+      }, 5000);
+    }
+
+    // Contador del anuncio
+    let segundos = 7;
+    function iniciarContador() {
+      const contador = document.getElementById("contador");
+      const intervalo = setInterval(function() {
+        segundos--;
+        contador.textContent = segundos;
+        if (segundos <= 0) {
+          clearInterval(intervalo);
+          cerrarAnuncio();
+        }
+      }, 1000);
+    }
+
+    function cerrarAnuncio() {
+      document.getElementById("video-anuncio").style.display = "none";
+      document.getElementById("videoAd").pause();
+    }
+
+    function activarSonido() {
+      const video = document.getElementById("videoAd");
+      video.muted = false;
+      video.currentTime = 0;
+      video.play();
+      document.getElementById("sonido-btn").style.display = "none";
+    }
+  </script>
 
 </body>
 </html>
