@@ -63,6 +63,11 @@
       border-radius: 8px;
       width: 250px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .service:hover {
+      transform: scale(1.03);
     }
     .social {
       text-align: center;
@@ -82,10 +87,18 @@
     .social-icons a:hover {
       transform: scale(1.2);
     }
-    .social-icons a .fa-youtube { color: #FF0000; }
-    .social-icons a .fa-tiktok { color: #000000; }
-    .social-icons a .fa-instagram { color: #C13584; }
-    .social-icons a .fa-linktree { color: #39e09b; }
+    .social-icons a .fa-youtube {
+      color: #FF0000;
+    }
+    .social-icons a .fa-tiktok {
+      color: #000000;
+    }
+    .social-icons a .fa-instagram {
+      color: #C13584;
+    }
+    .social-icons a .fa-linktree {
+      color: #39e09b;
+    }
     footer {
       background-color: #0652b8;
       color: white;
@@ -121,49 +134,19 @@
     .whatsapp-button:hover {
       background-color: #1ebe5d;
     }
+
+    /* Formulario oculto */
     #formulario-viaje {
-      padding: 30px;
-      background-color: #f9f9f9;
       display: none;
+      padding: 40px 20px;
       text-align: center;
+      background-color: #f5f5f5;
     }
-    #volver-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #0652b8;
-      color: white;
+
+    iframe {
+      width: 100%;
+      height: 100vh;
       border: none;
-      cursor: pointer;
-    }
-    #volver-btn:hover {
-      background-color: #043c87;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      nav a {
-        display: inline-block;
-        padding: 10px 15px;
-      }
-
-      .hero h2 {
-        font-size: 20px;
-        white-space: nowrap;
-      }
-
-      .logo {
-        max-width: 100px;
-      }
-
-      .services {
-        flex-direction: column;
-        align-items: center;
-      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -189,72 +172,66 @@
     <p>Automatiza, organiza y explora con nuestros servicios únicos</p>
   </section>
 
+  <!-- Servicios -->
   <section id="servicios" class="services">
     <div class="service">
       <h3>Automatización con IA</h3>
       <p>Optimiza tus procesos con soluciones de inteligencia artificial a medida.</p>
     </div>
-<div class="service" onclick="window.open('https://forms.gle/nC5wxWuF3TaVLGbi7', '_blank')"
-     style="cursor: pointer;">
-  <h3>Planes de viaje</h3>
-  <p>Viajes personalizados según tus intereses y presupuesto.</p>
-</div>
+    <div class="service" onclick="mostrarFormulario()">
+      <h3>Planes de viaje</h3>
+      <p>Viajes personalizados según tus intereses y presupuesto.</p>
+    </div>
     <div class="service">
       <h3>Organización de eventos</h3>
       <p>Desde pequeñas reuniones hasta grandes celebraciones, lo organizamos por ti.</p>
     </div>
   </section>
 
+  <!-- Redes sociales -->
   <section class="social">
     <h2>Síguenos en redes sociales</h2>
     <div class="social-icons">
       <a href="https://www.youtube.com/@NexploOficial" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.tiktok.com/@nexplo_oficial?ug_source=op.auth&ug_term=Linktr.ee&utm_source=awyc6vc625ejxp86&utm_campaign=tt4d_profile_link&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="https://www.instagram.com/nexplo_oficial/#" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@nexplo_oficial" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/nexplo_oficial" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://linktr.ee/Nexplo_Oficial" target="_blank"><i class="fas fa-link"></i></a>
     </div>
   </section>
 
+  <!-- Formulario de viaje (oculto hasta que se activa) -->
   <section id="formulario-viaje">
-    <h2>Planifica tu viaje con nosotros</h2>
-    <iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLSfvaDlwV2h1SWy_Elt2TTpDv_25mJEoFpuYriR8TUoaMs0x4g/viewform?usp=dialog" 
-      width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
-      Cargando…
-    </iframe>
-    <br>
-    <button id="volver-btn">Volver a la página principal</button>
-  </section>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfvaDlwV2h1SWy_Elt2TTpDv_25mJEoFpuYriR8TUoaMs0x4g/viewform?usp=dialog" loading="lazy"></iframe>
+  <button onclick="volverPaginaPrincipal()" style="margin-top: 20px; padding: 10px 20px; background-color: #0652b8; color: white; border: none; border-radius: 5px; cursor: pointer;">Volver</button>
+</section>
+
 
   <a href="https://wa.me/34600000000" class="whatsapp-button" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <footer>
-    <p id="contacto">Contacto: nexplooficial@gmail.com</p>
+    <p>Contacto: nexplooficial@gmail.com</p>
     <p>&copy; 2025 NEXPLO_OFICIAL STORE</p>
   </footer>
 
   <script>
-    const btnPlanes = document.getElementById('btnPlanes');
-    const volverBtn = document.getElementById('volver-btn');
-    const formViaje = document.getElementById('formulario-viaje');
-    const secciones = document.querySelectorAll('section:not(#formulario-viaje)');
+  function mostrarFormulario() {
+    document.querySelector('.hero').style.display = 'none';
+    document.querySelector('#servicios').style.display = 'none';
+    document.querySelector('.social').style.display = 'none';
+    document.querySelector('#formulario-viaje').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-    btnPlanes.addEventListener('click', (e) => {
-      e.preventDefault();
-      secciones.forEach(sec => sec.style.display = 'none');
-      formViaje.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    volverBtn.addEventListener('click', () => {
-      formViaje.style.display = 'none';
-      secciones.forEach(sec => sec.style.display = 'block');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+  function volverPaginaPrincipal() {
+    document.querySelector('#formulario-viaje').style.display = 'none';
+    document.querySelector('.hero').style.display = 'block';
+    document.querySelector('#servicios').style.display = 'flex';
+    document.querySelector('.social').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 
 </body>
 </html>
-
