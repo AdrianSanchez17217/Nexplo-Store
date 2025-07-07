@@ -82,18 +82,10 @@
     .social-icons a:hover {
       transform: scale(1.2);
     }
-    .social-icons a .fa-youtube {
-      color: #FF0000;
-    }
-    .social-icons a .fa-tiktok {
-      color: #000000;
-    }
-    .social-icons a .fa-instagram {
-      color: #C13584;
-    }
-    .social-icons a .fa-linktree {
-      color: #39e09b;
-    }
+    .social-icons a .fa-youtube { color: #FF0000; }
+    .social-icons a .fa-tiktok { color: #000000; }
+    .social-icons a .fa-instagram { color: #C13584; }
+    .social-icons a .fa-linktree { color: #39e09b; }
     footer {
       background-color: #0652b8;
       color: white;
@@ -108,23 +100,6 @@
     }
     footer .social-icons a:hover {
       transform: scale(1.2);
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    form button {
-      padding: 10px 20px;
-      background-color: #0652b8;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    form button:hover {
-      background-color: #043c87;
     }
     .whatsapp-button {
       position: fixed;
@@ -146,28 +121,50 @@
     .whatsapp-button:hover {
       background-color: #1ebe5d;
     }
+    #formulario-viaje {
+      padding: 30px;
+      background-color: #f9f9f9;
+      display: none;
+      text-align: center;
+    }
+    #volver-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #0652b8;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #volver-btn:hover {
+      background-color: #043c87;
+    }
+
     @media (max-width: 768px) {
-  nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+      nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
 
-  nav a {
-    display: inline-block;
-    padding: 10px 15px;
-  }
+      nav a {
+        display: inline-block;
+        padding: 10px 15px;
+      }
 
-  .hero h2 {
-    font-size: 20px;
-    white-space: nowrap;
-  }
+      .hero h2 {
+        font-size: 20px;
+        white-space: nowrap;
+      }
 
-  .logo {
-    max-width: 100px;
-  }
-}
+      .logo {
+        max-width: 100px;
+      }
 
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -197,10 +194,11 @@
       <h3>Automatización con IA</h3>
       <p>Optimiza tus procesos con soluciones de inteligencia artificial a medida.</p>
     </div>
-    <div class="service">
-      <h3>Planes de viaje</h3>
-      <p>Viajes personalizados según tus intereses y presupuesto.</p>
-    </div>
+<div class="service" onclick="window.open('https://forms.gle/nC5wxWuF3TaVLGbi7', '_blank')"
+     style="cursor: pointer;">
+  <h3>Planes de viaje</h3>
+  <p>Viajes personalizados según tus intereses y presupuesto.</p>
+</div>
     <div class="service">
       <h3>Organización de eventos</h3>
       <p>Desde pequeñas reuniones hasta grandes celebraciones, lo organizamos por ti.</p>
@@ -217,14 +215,46 @@
     </div>
   </section>
 
+  <section id="formulario-viaje">
+    <h2>Planifica tu viaje con nosotros</h2>
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSfvaDlwV2h1SWy_Elt2TTpDv_25mJEoFpuYriR8TUoaMs0x4g/viewform?usp=dialog" 
+      width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
+      Cargando…
+    </iframe>
+    <br>
+    <button id="volver-btn">Volver a la página principal</button>
+  </section>
+
   <a href="https://wa.me/34600000000" class="whatsapp-button" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <footer>
-    <p>Contacto: nexplooficial@gmail.com</p>
+    <p id="contacto">Contacto: nexplooficial@gmail.com</p>
     <p>&copy; 2025 NEXPLO_OFICIAL STORE</p>
   </footer>
 
+  <script>
+    const btnPlanes = document.getElementById('btnPlanes');
+    const volverBtn = document.getElementById('volver-btn');
+    const formViaje = document.getElementById('formulario-viaje');
+    const secciones = document.querySelectorAll('section:not(#formulario-viaje)');
+
+    btnPlanes.addEventListener('click', (e) => {
+      e.preventDefault();
+      secciones.forEach(sec => sec.style.display = 'none');
+      formViaje.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    volverBtn.addEventListener('click', () => {
+      formViaje.style.display = 'none';
+      secciones.forEach(sec => sec.style.display = 'block');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
 </body>
 </html>
+
