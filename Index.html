@@ -12,13 +12,28 @@
       background: #f5f5f5;
     }
     header {
-      background-color: #000000;
+      background-color: #0652b8;
       color: white;
       padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       text-align: center;
     }
+    .header-content {
+      max-width: 100%;
+    }
+    .logo {
+      max-width: 150px;
+      transition: transform 0.3s ease;
+      margin-top: 10px;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+    }
     nav {
-      background-color: #1a1a1a;
+      background-color: #054aa5;
       text-align: center;
     }
     nav a {
@@ -28,7 +43,7 @@
       text-decoration: none;
     }
     nav a:hover {
-      background-color: #333;
+      background-color: #043c87;
     }
     .hero {
       padding: 50px;
@@ -76,8 +91,11 @@
     .social-icons a .fa-instagram {
       color: #C13584;
     }
+    .social-icons a .fa-linktree {
+      color: #39e09b;
+    }
     footer {
-      background-color: #000;
+      background-color: #0652b8;
       color: white;
       text-align: center;
       padding: 20px;
@@ -100,13 +118,43 @@
     }
     form button {
       padding: 10px 20px;
-      background-color: #000;
+      background-color: #0652b8;
       color: white;
       border: none;
       cursor: pointer;
     }
     form button:hover {
-      background-color: #333;
+      background-color: #043c87;
+    }
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      font-size: 28px;
+      z-index: 1000;
+      text-decoration: none;
+    }
+    .whatsapp-button:hover {
+      background-color: #1ebe5d;
+    }
+    @media (max-width: 768px) {
+      nav a {
+        display: block;
+        padding: 10px;
+      }
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -114,8 +162,11 @@
 <body>
 
   <header>
-    <h1>NEXPLO STORE</h1>
-    <p>Tu puerta a servicios personalizados con IA, viajes y más</p>
+    <div class="header-content">
+      <h1>NEXPLO STORE</h1>
+      <p>Tu puerta a servicios personalizados con IA, viajes y más</p>
+      <a href="#"><img class="logo" src="https://adriansanchez17217.github.io/Nexplo-Store/Logo.png" alt="Logo Nexplo Store" /></a>
+    </div>
   </header>
 
   <nav>
@@ -150,18 +201,13 @@
       <a href="https://www.youtube.com/@NexploOficial" target="_blank"><i class="fab fa-youtube"></i></a>
       <a href="https://www.tiktok.com/@nexplo_oficial?ug_source=op.auth&ug_term=Linktr.ee&utm_source=awyc6vc625ejxp86&utm_campaign=tt4d_profile_link&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
       <a href="https://www.instagram.com/nexplo_oficial/#" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linktr.ee/Nexplo_Oficial" target="_blank"><i class="fas fa-link"></i></a>
     </div>
   </section>
 
-  <section id="contacto" style="padding: 40px; background-color: #fafafa; text-align: center;">
-    <h2>Contáctanos</h2>
-    <form action="mailto:nexplooficial@gmail.com" method="post" enctype="text/plain" style="max-width: 400px; margin: 0 auto;">
-      <input type="text" name="nombre" placeholder="Tu nombre" required />
-      <input type="email" name="email" placeholder="Tu correo" required />
-      <textarea name="mensaje" placeholder="Tu mensaje" rows="5" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
+  <a href="https://wa.me/34600000000" class="whatsapp-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <footer>
     <p>Contacto: nexplooficial@gmail.com</p>
@@ -170,4 +216,3 @@
 
 </body>
 </html>
-
