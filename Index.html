@@ -43,6 +43,10 @@
       background: #e0e0e0;
       text-align: center;
     }
+.hero h2 {
+      white-space: nowrap;
+      font-size: 5vw;
+    }
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -146,18 +150,7 @@
       background: rgba(0,0,0,0.5);
       padding: 10px;
       border-radius: 5px;
-    }
-    #cerrar-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 18px;
-      padding: 10px 15px;
-      border: none;
-      background: #ff0000;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
+      display: none;
     }
     #sonido-btn {
       position: absolute;
@@ -179,9 +172,8 @@
 
   <!-- ANUNCIO DE VIDEO -->
   <div id="video-anuncio">
-    <video id="videoAd" src="https://adriansanchez17217.github.io/Nexplo-Store/Video.mp4" autoplay playsinline></video>
-    <div id="contador-box">Cierre en <span id="contador">7</span>s</div>
-    <button id="cerrar-btn" onclick="cerrarAnuncio()">Cerrar</button>
+    <video id="videoAd" src="https://adriansanchez17217.github.io/Nexplo-Store/Video.mp4" autoplay muted playsinline></video>
+    <div id="contador-box">Anuncio - <span id="contador">7</span>s</div>
     <button id="sonido-btn" onclick="activarSonido()">🔊 Activar sonido</button>
   </div>
 
@@ -243,7 +235,7 @@
     <p>&copy; 2025 NEXPLO_OFICIAL STORE</p>
   </footer>
 
-  <script>
+   <script>
     function mostrarFormulario() {
       document.querySelector('.hero').style.display = 'none';
       document.querySelector('#servicios').style.display = 'none';
@@ -259,20 +251,43 @@
       document.querySelector('#formulario-viaje').style.display = 'none';
     }
 
-    // Mostrar anuncio 5 segundos después
-    window.onload = function() {
-      setTimeout(function() {
-        document.getElementById("video-anuncio").style.display = "flex";
-        document.getElementById("sonido-btn").style.display = "block";
-        iniciarContador();
+    let segundos = 7;
+    let intervalo;
+
+    // Mostrar el anuncio tras 5 segundos pero con video en pausa
+    window.onload = function () {
+      setTimeout(() => {
+        const anuncio = document.getElementById("video-anuncio");
+        const video = document.getElementById("videoAd");
+        const btnSonido = document.getElementById("sonido-btn");
+
+        anuncio.style.display = "flex";
+        btnSonido.style.display = "block";
+
+        // Mantener video pausado y silenciado hasta interacción
+        video.muted = true;
+        video.pause();
       }, 5000);
+    };
+
+    function activarSonido() {
+      const video = document.getElementById("videoAd");
+      const btnSonido = document.getElementById("sonido-btn");
+      const contadorBox = document.getElementById("contador-box");
+
+      video.muted = false;
+      video.currentTime = 0;
+      video.play();
+
+      btnSonido.style.display = "none";
+      contadorBox.style.display = "block";
+
+      iniciarContador();
     }
 
-    // Contador del anuncio
-    let segundos = 7;
     function iniciarContador() {
       const contador = document.getElementById("contador");
-      const intervalo = setInterval(function() {
+      intervalo = setInterval(() => {
         segundos--;
         contador.textContent = segundos;
         if (segundos <= 0) {
@@ -285,14 +300,6 @@
     function cerrarAnuncio() {
       document.getElementById("video-anuncio").style.display = "none";
       document.getElementById("videoAd").pause();
-    }
-
-    function activarSonido() {
-      const video = document.getElementById("videoAd");
-      video.muted = false;
-      video.currentTime = 0;
-      video.play();
-      document.getElementById("sonido-btn").style.display = "none";
     }
   </script>
 
